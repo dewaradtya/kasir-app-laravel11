@@ -23,26 +23,22 @@ class ProdukController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'title' => 'required|min:2',
-            'file' => 'required|image',
-            'description' => 'required|string',
-            'harga' => 'required|numeric|min:0',
+            'nama_produk' => 'required|min:2',
+            'diskon' => 'required',
+            'harga_jual' => 'required|numeric|min:0',
+            'harga_beli' => 'required|numeric|min:0',
         ], [
-            'title.required' => 'title produk harus diisi.',
-            'title.min' => 'title produk minimal harus memiliki :min karakter.',
-            'description.required' => 'title produk harus diisi.',
-            'file.required' => 'File gambar produk harus diunggah.',
-            'file.image' => 'File yang diunggah harus berupa gambar.',
-            'harga.required' => 'Harga produk harus diisi.',
-            'harga.numeric' => 'Harga produk harus berupa angka.',
-            'harga.min' => 'Harga produk tidak boleh kurang dari :min.',
+            'nama_produk.required' => 'nama_produk produk harus diisi.',
+            'nama_produk.min' => 'nama_produk produk minimal harus memiliki :min karakter.',
+            'harga_jual.required' => 'Harga produk harus diisi.',
+            'harga_jual.numeric' => 'Harga produk harus berupa angka.',
+            'harga_jual.min' => 'Harga produk tidak boleh kurang dari :min.',
+            'harga_beli.required' => 'Harga produk harus diisi.',
+            'harga_beli.numeric' => 'Harga produk harus berupa angka.',
+            'harga_beli.min' => 'Harga produk tidak boleh kurang dari :min.',
         ]);
 
         $data = $request->all();
-        $data['views'] = 0;
-        $gambar = $request->file('file')->storeAs('produk', $request->file('file')->getClientOriginalName());
-
-        $data['file'] = $gambar;
 
         Produk::create($data);
 

@@ -31,12 +31,14 @@ class KategoriController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'nama' => 'required',
+            'nama_kategori' => 'required|unique:kategoris',
+        ],[
+            'nama_kategori.required' => 'Kategori harus diisi',
+            'nama_kategori.unique' => 'Kategori sudah ada',
         ]);
 
         $kategori = Kategori::create([
-            'nama' => $request->nama,
-            'slug' => Str::slug($request->nama)
+            'nama_kategori' => $request->nama_kategori,
         ]);
 
         return redirect('kategori')->with('success', 'Kategori berhasil dibuat');
@@ -64,7 +66,6 @@ class KategoriController extends Controller
     public function update(Request $request, string $id)
     {
         $data =  $request->all();
-        $data['slug'] = Str::slug($request->nama);
 
         $kategori = Kategori::findOrFail($id);
         $kategori->update($data);

@@ -8,26 +8,26 @@
             <form action="{{ route('produk.store') }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 <div class="mb-4">
-                    <label for="title" class="block text-sm font-medium text-gray-700">Nama Produk:</label>
-                    <input type="text" id="title" name="title" value="{{ old('title') }}" required
+                    <label for="nama_produk" class="block text-sm font-medium text-gray-700">Nama Produk:</label>
+                    <input type="text" id="nama_produk" name="nama_produk" value="{{ old('nama_produk') }}"
                         class="mt-1 p-2 block w-full border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500">
-                    @error('title')
+                    @error('nama_produk')
                         <span class="text-red-500">{{ $message }}</span>
                     @enderror
                 </div>
                 <div class="mb-4">
-                    <label for="jumlah" class="block text-sm font-medium text-gray-700">Jumlah Produk:</label>
-                    <input type="number" id="jumlah" name="jumlah" value="{{ old('jumlah') }}" required
+                    <label for="merk" class="block text-sm font-medium text-gray-700">Merk Produk:</label>
+                    <input type="text" id="merk" name="merk" value="{{ old('merk') }}"
                         class="mt-1 p-2 block w-full border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500">
-                    @error('jumlah')
+                    @error('merk')
                         <span class="text-red-500">{{ $message }}</span>
                     @enderror
                 </div>
                 <div class="mb-4">
-                    <label for="file" class="block text-sm font-medium text-gray-700">File Gambar Produk:</label>
-                    <input type="file" id="file" name="file" accept="image/*" required
+                    <label for="stok" class="block text-sm font-medium text-gray-700">Stok Produk:</label>
+                    <input type="number" id="stok" name="stok" value="{{ old('stok') }}"
                         class="mt-1 p-2 block w-full border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500">
-                    @error('file')
+                    @error('stok')
                         <span class="text-red-500">{{ $message }}</span>
                     @enderror
                 </div>
@@ -35,30 +35,31 @@
                     <label for="kategori_id" class="block text-sm font-medium text-gray-700">Kategory</label>
                     <select name="kategori_id" id="kategori_id" class="w-full border rounded-md py-2 px-3">
                         @foreach ($kategori as $row)
-                            <option value="{{ $row->id }}">{{ $row->nama }}</option>
+                            <option value="{{ $row->id }}">{{ $row->nama_kategori }}</option>
                         @endforeach
                     </select>
                 </div>
                 <div class="mb-4">
-                    <label for="is_active" class="block text-sm font-medium text-gray-700">Kategory</label>
-                    <select name="is_active" id="is_active" class="w-full border rounded-md py-2 px-3">
-                            <option value="1">Publish</option>
-                            <option value="0">Draft</option>
-                    </select>
-                </div>
-                <div class="mb-4">
-                    <label for="harga" class="block text-sm font-medium text-gray-700">Harga:</label>
-                    <input type="number" id="harga" name="harga" value="{{ old('harga') }}" required min="0"
+                    <label for="harga_jual" class="block text-sm font-medium text-gray-700">harga_jual:</label>
+                    <input type="number" id="harga_jual" name="harga_jual" value="{{ old('harga_jual') }}" min="0"
                         class="mt-1 p-2 block w-full border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500">
-                    @error('harga')
+                    @error('harga_jual')
                         <span class="text-red-500">{{ $message }}</span>
                     @enderror
                 </div>
                 <div class="mb-4">
-                    <label for="description" class="block text-sm font-medium text-gray-700">Deskripsi:</label>
-                    <textarea id="description" name="description" required
-                        class="mt-1 p-2 block w-full border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500">{{ old('description') }}</textarea>
-                    @error('description')
+                    <label for="harga_beli" class="block text-sm font-medium text-gray-700">harga_beli:</label>
+                    <input type="number" id="harga_beli" name="harga_beli" value="{{ old('harga_beli') }}" min="0"
+                        class="mt-1 p-2 block w-full border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500">
+                    @error('harga_beli')
+                        <span class="text-red-500">{{ $message }}</span>
+                    @enderror
+                </div>
+                <div class="mb-4">
+                    <label for="diskon" class="block text-sm font-medium text-gray-700">diskon:</label>
+                    <input type="number" id="diskon" name="diskon" value="{{ old('diskon') }}" min="0"
+                        class="mt-1 p-2 block w-full border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500">
+                    @error('diskon')
                         <span class="text-red-500">{{ $message }}</span>
                     @enderror
                 </div>

@@ -33,6 +33,19 @@
             background-color: #b4b4b4;
             margin: 5px 0;
         }
+
+        /* Styles for sidebar links */
+        .sidebar-link {
+            transition: background-color 0.3s;
+        }
+
+        .sidebar-link:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+
+        .active-sidebar-link {
+            background-color: rgba(255, 255, 255, 0.2);
+        }
     </style>
 </head>
 
@@ -45,11 +58,18 @@
                 <h1 class="text-xl font-bold mb-4 ml-7">Kasir App</h1>
                 <ul>
                     <div class="bg-white bg-opacity-25 shadow-md rounded-lg p-2">
-                        <a href="{{ route('dashboard') }}" class="block py-2">Dashboard</a>
+                        <a href="{{ route('dashboard') }}" class="block py-2 sidebar-link">Dashboard</a>
                     </div>
                     <p class="py-2 mx-4 font-semibold text-sm">COMPONENTS</p>
-                    <li><a href="{{ route('produk.index') }}" class="block py-2">Produk</a></li>
-                    <li><a href="#" class="block py-2">Penjualan</a></li>
+                    <li><a href="{{ route('produk.index') }}" class="block py-2 sidebar-link">Produk</a></li>
+                    <li><a href="{{ route('member.index') }}" class="block py-2 sidebar-link">Member</a></li>
+                    <li><a href="{{ route('supplier.index') }}" class="block py-2 sidebar-link">Supplier</a></li>
+                    <p class="py-2 mx-4 font-semibold text-sm">TRANSACTION</p>
+                    <li><a href="{{ route('pengeluaran.index') }}" class="block py-2 sidebar-link">Pengeluaran</a></li>
+                    <li><a href="#" class="block py-2 sidebar-link">Penjualan</a></li>
+                    <li><a href="{{ route('pembelian.index') }}" class="block py-2 sidebar-link">Pembelian</a></li>
+                    <p class="py-2 mx-4 font-semibold text-sm">CONTROLLER</p>
+                    <li><a href="{{ route('setting.index') }}" class="block py-2 sidebar-link">Setting</a></li>
                 </ul>
                 <!-- Tombol Logout -->
                 <form action="{{ route('logout') }}" method="post">
@@ -59,7 +79,7 @@
                 </form>
             </div>
         </aside>
-        
+
         <!-- Konten Utama -->
         <main class="flex-1 p-8">
             <div class="bg-green-900 bg-opacity-60 shadow-md rounded-lg p-4 text-white">

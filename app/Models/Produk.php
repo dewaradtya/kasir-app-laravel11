@@ -10,7 +10,13 @@ class Produk extends Model
     use HasFactory;
 
     protected $fillable = [
-        'title', 'slug', 'kategori_id', 'harga', 'is_active', 'description', 'jumlah', 'file','views'
+        'nama_produk', 
+        'merk', 
+        'harga_beli', 
+        'harga_jual', 
+        'diskon', 
+        'kategori_id', 
+        'stok',
     ];
 
     protected $hidden =[];

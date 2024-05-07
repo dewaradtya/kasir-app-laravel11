@@ -13,14 +13,13 @@ return new class extends Migration
     {
         Schema::create('produks', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('file')->nullable();
-            $table->string('title');
-            $table->decimal('harga', 10, 2);
-            $table->text('description');
-            $table->integer('jumlah')->default(0);
             $table->integer('kategori_id');
-            $table->boolean('is_active');
-            $table->integer('views');
+            $table->string('nama_produk');
+            $table->string('merk');
+            $table->integer('harga_beli');
+            $table->integer('diskon')->nullable()->default(0);
+            $table->integer('stok')->default(0);
+            $table->integer('harga_jual');
             $table->timestamps();
         });
     }
