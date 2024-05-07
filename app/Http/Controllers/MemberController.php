@@ -63,7 +63,11 @@ class MemberController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $member = Member::find($id);
+
+        return view('admin.member.edit', [
+            'member' => $member
+        ]);
     }
 
     /**
@@ -71,7 +75,23 @@ class MemberController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $request->validate([
+            'nama' => 'required',
+            'kode_member' => 'required',
+            'telepon' => 'required',
+            'alamat' => 'required',
+        ], [
+            'nama.required' => 'Nama harus diisi',
+            'kode_member.required' => 'Kode member harus diisi',
+            'telepon.required' => 'Telepon harus diisi',
+            'alamat.required' => 'Alamat harus diisi'
+        ]);
+
+        $data = $request->all();
+
+        Member::findOrFail($id)->update($data);
+
+        return redirect('member')->with('success', 'Member berhasil diperbarui');
     }
 
     /**
@@ -79,6 +99,10 @@ class MemberController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $member = Member::find($id);
+
+        $member->delete();
+
+        return redirect('member')->with('success', 'Member berhasil dihapus');
     }
 }

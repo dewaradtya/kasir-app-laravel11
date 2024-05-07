@@ -58,7 +58,7 @@
                 <h1 class="text-xl font-bold mb-4 ml-7">Kasir App</h1>
                 <ul>
                     <div class="bg-white bg-opacity-25 shadow-md rounded-lg p-2">
-                        <a href="{{ route('dashboard') }}" class="block py-2 sidebar-link">Dashboard</a>
+                        <a href="{{ route('dashboard') }}" class="block py-2">Dashboard</a>
                     </div>
                     <p class="py-2 mx-4 font-semibold text-sm">COMPONENTS</p>
                     <li><a href="{{ route('produk.index') }}" class="block py-2 sidebar-link">Produk</a></li>
