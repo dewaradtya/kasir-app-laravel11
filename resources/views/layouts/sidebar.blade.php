@@ -80,6 +80,39 @@
             </div>
         </aside>
 
+        @if (session('success'))
+            <div id="successModal"
+                class="fixed inset-0 z-50 flex items-center justify-center overflow-x-hidden overflow-y-auto outline-none focus:outline-none">
+                <div class="relative w-auto max-w-sm mx-auto my-6">
+                    <div
+                        class="relative flex flex-col w-full bg-white border-0 rounded-lg shadow-lg outline-none focus:outline-none">
+                        <div
+                            class="flex items-start justify-between p-5 border-b border-solid rounded-t border-blueGray-200">
+                            <h3 class="text-2xl font-semibold text-gray-800">Berhasil</h3>
+                            <button
+                                class="p-1 ml-auto bg-transparent border-0 text-black float-right text-3xl leading-none font-semibold outline-none focus:outline-none"
+                                onclick="document.getElementById('successModal').style.display='none';">
+                                <span
+                                    class="bg-transparent text-black h-6 w-6 text-2xl block outline-none focus:outline-none">×</span>
+                            </button>
+                        </div>
+                        <div class="relative p-6 flex-auto">
+                            <p class="text-lg leading-relaxed text-gray-700">{{ session('success') }}</p>
+                        </div>
+                        <div
+                            class="flex items-center justify-end p-6 border-t border-solid rounded-b border-blueGray-200">
+                            <button
+                                class="text-white bg-green-500 hover:bg-green-600 font-bold uppercase px-6 py-2 text-sm rounded shadow outline-none focus:outline-none mr-1 mb-1"
+                                onclick="document.getElementById('successModal').style.display='none';">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <script>
+                document.getElementById('successModal').style.display = 'block';
+            </script>
+        @endif
+
         <!-- Konten Utama -->
         <main class="flex-1 p-8">
             <div class="bg-green-900 bg-opacity-60 shadow-md rounded-lg p-4 text-white">
@@ -105,22 +138,22 @@
         }
 
         document.addEventListener('DOMContentLoaded', function() {
-        var time = new Date().getHours(); // Dapatkan jam saat ini
+            var time = new Date().getHours(); // Dapatkan jam saat ini
 
-        var greeting = document.getElementById('greeting');
+            var greeting = document.getElementById('greeting');
 
-        if (time >= 5 && time < 12) {
-            greeting.textContent = 'Selamat pagi';
-        } else if (time >= 12 && time < 15) {
-            greeting.textContent = 'Selamat siang';
-        } else if (time >= 15 && time < 18) {
-            greeting.textContent = 'Selamat sore';
-        } else if (time >= 18 && time < 24) {
-            greeting.textContent = 'Selamat malam';
-        } else {
-            greeting.textContent = 'Selamat malam';
-        }
-    });
+            if (time >= 5 && time < 12) {
+                greeting.textContent = 'Selamat pagi';
+            } else if (time >= 12 && time < 15) {
+                greeting.textContent = 'Selamat siang';
+            } else if (time >= 15 && time < 18) {
+                greeting.textContent = 'Selamat sore';
+            } else if (time >= 18 && time < 24) {
+                greeting.textContent = 'Selamat malam';
+            } else {
+                greeting.textContent = 'Selamat malam';
+            }
+        });
     </script>
 
 </body>
