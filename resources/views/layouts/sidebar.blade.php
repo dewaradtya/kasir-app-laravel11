@@ -61,6 +61,9 @@
                         <a href="{{ route('dashboard') }}" class="block py-2">Dashboard</a>
                     </div>
                     <p class="py-2 mx-4 font-semibold text-sm">COMPONENTS</p>
+                    @if (Auth::user()->role == 'admin')
+                        <li><a href="{{ route('user.index') }}" class="block py-2 sidebar-link">Users</a></li>
+                    @endif
                     <li><a href="{{ route('produk.index') }}" class="block py-2 sidebar-link">Produk</a></li>
                     <li><a href="{{ route('member.index') }}" class="block py-2 sidebar-link">Member</a></li>
                     <li><a href="{{ route('supplier.index') }}" class="block py-2 sidebar-link">Supplier</a></li>

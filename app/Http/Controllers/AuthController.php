@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -44,6 +45,29 @@ class AuthController extends Controller
         return back()->withInput($request->only('email', 'remember'))->with('loginError', 'Email atau password salah');
     }
 
+    public function register()
+    {
+        return view('auth.register');
+    }
+
+    public function doRegister(Request $request)
+    {
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|string|email|max:255|unique:users',
+            'password' => 'required|string',
+        ]);
+
+        $user = User::create([
+            'name' => $request->input('name'),
+            'email' => $request->input('email'),
+            'password' => bcrypt($request->input('password')),
+        ]);
+
+
+        return redirect()->route('login')->with('success', 'Registration successful. Please login.');
+    }
+
     public function logout()
     {
         if (Auth::check()) {
@@ -57,5 +81,46 @@ class AuthController extends Controller
         request()->session()->invalidate();
 
         return redirect('/');
+    }
+
+    public function index()
+    {
+        $data = User::paginate(10);
+
+        return view('admin.user.index', ['data' => $data]);
+    }
+
+    public function edit(string $id)
+    {
+        $user = User::find($id);
+
+        return view('admin.user.edit', [
+            'user' => $user
+        ]);
+    }
+
+    public function update(Request $request, $id)
+    {
+        // Validasi input
+        $request->validate([
+            'role' => 'in:admin,kasir',
+        ]);
+
+        $user = User::findOrFail($id);
+
+        $user->role = $request->role;
+        $user->password = bcrypt($request->input('password'));
+        $user->save();
+
+        return redirect('user')->with('success', 'Pengguna berhasil diperbarui.');
+    }
+
+    public function destroy($id)
+    {
+        $user = User::find($id);
+
+        $user->delete();
+
+        return redirect('user')->with('success', 'User berhasil dihapus');
     }
 }

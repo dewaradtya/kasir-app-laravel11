@@ -35,7 +35,7 @@
                 </div>
                 <button type="submit" class="bg-black hover:bg-black-800 text-white px-4 py-2 rounded-md focus:outline-none focus:shadow-outline">Login</button>
             </form>
-            <p class="mt-4 text-sm text-gray-600">Don't have an account? <a href=""
+            <p class="mt-4 text-sm text-gray-600">Don't have an account? <a href="{{route('register')}}"
                     class="text-blue-500">Create Your Account</a></p>
         </div>
     </div>
