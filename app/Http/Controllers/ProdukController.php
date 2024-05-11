@@ -11,7 +11,11 @@ class ProdukController extends Controller
     public function index()
     {
         $produk = Produk::paginate(10);
-        return view('admin.produk.index', ['produk' => $produk]);
+        $kategori = Kategori::all();
+        return view('admin.produk.index', [
+            'produk' => $produk,
+            'kategori' => $kategori
+        ]);
     }
 
     public function create()
@@ -38,11 +42,31 @@ class ProdukController extends Controller
             'harga_beli.min' => 'Harga produk tidak boleh kurang dari :min.',
         ]);
 
+        // $produk = Produk::latest()->first();
+        // $request['kode_produk'] = 'P' . tambah_nol_didepan((int)$produk->id, 6);
         $data = $request->all();
 
         Produk::create($data);
 
         return redirect('produk')->with('success', 'Produk berhasil ditambahkan');
+    }
+
+    public function edit($id)
+    {
+        $produk = Produk::find($id);
+        $kategori = Kategori::all();
+        return view('admin.produk.edit', [
+            'produk' => $produk,
+            'kategori' => $kategori
+        ]);
+    }
+
+    public function update(Request $request, $id)
+    {
+        $produk = Produk::find($id);
+        $produk->update($request->all());
+
+        return redirect('produk')->with('success', 'Produk berhasil diupdate');
     }
 
     public function destroy($id)

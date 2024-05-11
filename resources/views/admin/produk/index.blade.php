@@ -25,22 +25,31 @@
                     <thead>
                         <tr class="text-white bg-yellow-900 bg-opacity-80">
                             <th class="px-4 py-2">#</th>
+                            <th class="px-4 py-2">Kode Produk</th>
                             <th class="px-4 py-2">Nama Produk</th>
                             <th class="px-4 py-2">Harga Jual</th>
+                            <th class="px-4 py-2">Harga Beli</th>
+                            <th class="px-4 py-2">Stok</th>
+                            <th class="px-4 py-2">Diskon</th>
                             <th class="px-4 py-2">Kategori</th>
-                            <th class="px-4 py-2">Jumlah</th>
                             <th class="px-4 py-2">Action</th>
                         </tr>
                     </thead>
                     <tbody>
                         @foreach ($produk as $row)
                             <tr>
-                                <td class="px-2 py-2">{{ $loop->iteration }}</td>
+                                <td class="px-2 py-2">{{ $row->id }}</td>
+                                <td class="px-2 py-2">{{ $row->kode_produk }}</td>
                                 <td class="px-2 py-2">{{ $row->nama_produk }}</td>
                                 <td class="px-2 py-2">Rp.
-                                    {{ number_format($row->harga_jual, 0, ',', '.') }}</td>
-                                <td class="px-2 py-2">{{ $row->kategori->nama_kategori }}</td>
-                                <td class="px-2 py-2">{{ $row->stok }}</td>
+                                    {{ format_uang($row->harga_jual) }}</td>
+                                <td class="px-2 py-2">Rp.
+                                    {{ format_uang($row->harga_beli) }}</td>
+                                <td class="px-2 py-2">{{ format_uang($row->stok) }}</td>
+                                <td class="px-2 py-2">{{ $row->diskon }}</td>
+                                @foreach ($kategori as $row)
+                                    <td class="px-2 py-2">{{ $row->nama_kategori }}</td>
+                                @endforeach
                                 <td class="align-middle">
                                     <a href="{{ route('produk.edit', $row->id) }}"
                                         class="inline-block px-4 py-2 bg-blue-500 text-white rounded-md shadow-sm hover:bg-blue-600">Edit</a>
