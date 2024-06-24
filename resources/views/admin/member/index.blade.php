@@ -8,8 +8,11 @@
                 <h2 class="text-xl font-semibold mb-4">Data Member</h2>
                 <div class="flex space-x-4">
                     <div class="relative">
-                        <input type="text"
-                            class="border px-2 py-1 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+                        <form action="{{ route('member.index') }}" method="GET">
+                            <input type="text" name="search"
+                                class="border px-2 py-1 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+                            <button type="submit" class="inline-block px-4 py-2 bg-gray-700 text-white rounded-md shadow-sm hover:bg-gray-600">Search</button>
+                        </form>
                     </div>
                     <a href="{{ route('member.create') }}"
                         class="inline-block px-4 py-2 bg-green-700 text-white rounded-md shadow-sm hover:bg-green-600">Add

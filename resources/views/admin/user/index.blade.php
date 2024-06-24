@@ -6,10 +6,12 @@
         <div class="card shadow-lg bg-white rounded-lg p-4 mt-4">
             <div class="flex items-center justify-between">
                 <h2 class="text-xl font-semibold mb-4">Data User</h2>
-                    <div class="relative">
-                        <input type="text"
-                            class="border px-2 py-1 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
-                </div>
+                <form action="{{ route('user.index') }}" method="GET">
+                    <input type="text" name="search"
+                        class="border px-2 py-1 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+                    <button type="submit"
+                        class="inline-block px-4 py-2 bg-gray-700 text-white rounded-md shadow-sm hover:bg-gray-600">Search</button>
+                </form>
             </div>
             <div class="overflow-x-auto">
                 <table class="table-auto w-full border-collapse">

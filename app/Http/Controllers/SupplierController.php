@@ -2,36 +2,37 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Member;
+use App\Models\Supplier;
 use Illuminate\Http\Request;
 
-class MemberController extends Controller
+class SupplierController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index(Request $request)
     {
-        $query = Member::query();
+        $query = Supplier::query();
 
         if ($request->has('search')) {
             $searchTerm = $request->input('search');
             $query->where('nama', 'like', '%' . $searchTerm . '%');
         }
 
-        $member = $query->paginate(10);
+        $supplier = $query->paginate(10);
 
-        return view('admin.member.index', [
-            'member' => $member,
+        return view('admin.supplier.index', [
+            'supplier' => $supplier,
         ]);
     }
+
 
     /**
      * Show the form for creating a new resource.
      */
     public function create()
     {
-        return view('admin.member.create');
+        return view('admin.supplier.create');
     }
 
     /**
@@ -41,21 +42,19 @@ class MemberController extends Controller
     {
         $request->validate([
             'nama' => 'required',
-            'kode_member' => 'required',
             'telepon' => 'required',
             'alamat' => 'required',
         ], [
             'nama.required' => 'Nama harus diisi',
-            'kode_member.required' => 'Kode member harus diisi',
             'telepon.required' => 'Alamat harus diisi',
             'alamat.required' => 'Telepon harus diisi'
         ]);
 
         $data = $request->all();
 
-        Member::create($data);
+        Supplier::create($data);
 
-        return redirect('member')->with('success', 'Member berhasil ditambahkan');
+        return redirect('supplier')->with('success', 'Supplier berhasil ditambahkan');
     }
 
     /**
@@ -71,10 +70,10 @@ class MemberController extends Controller
      */
     public function edit(string $id)
     {
-        $member = Member::find($id);
+        $supplier = Supplier::find($id);
 
-        return view('admin.member.edit', [
-            'member' => $member
+        return view('admin.supplier.edit', [
+            'supplier' => $supplier
         ]);
     }
 
@@ -85,21 +84,19 @@ class MemberController extends Controller
     {
         $request->validate([
             'nama' => 'required',
-            'kode_member' => 'required',
             'telepon' => 'required',
             'alamat' => 'required',
         ], [
             'nama.required' => 'Nama harus diisi',
-            'kode_member.required' => 'Kode member harus diisi',
             'telepon.required' => 'Telepon harus diisi',
             'alamat.required' => 'Alamat harus diisi'
         ]);
 
         $data = $request->all();
 
-        Member::findOrFail($id)->update($data);
+        Supplier::findOrFail($id)->update($data);
 
-        return redirect('member')->with('success', 'Member berhasil diperbarui');
+        return redirect('supplier')->with('success', 'Supplier berhasil diperbarui');
     }
 
     /**
@@ -107,10 +104,10 @@ class MemberController extends Controller
      */
     public function destroy(string $id)
     {
-        $member = Member::find($id);
+        $supplier = Supplier::find($id);
 
-        $member->delete();
+        $supplier->delete();
 
-        return redirect('member')->with('success', 'Member berhasil dihapus');
+        return redirect('supplier')->with('success', 'Supplier berhasil dihapus');
     }
 }

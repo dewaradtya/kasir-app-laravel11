@@ -83,11 +83,20 @@ class AuthController extends Controller
         return redirect('/');
     }
 
-    public function index()
+    public function index(Request $request)
     {
-        $data = User::paginate(10);
+        $query = User::query();
 
-        return view('admin.user.index', ['data' => $data]);
+        if ($request->has('search')) {
+            $searchTerm = $request->input('search');
+            $query->where('name', 'like', '%' . $searchTerm . '%');
+        }
+
+        $data = $query->paginate(10);
+
+        return view('admin.user.index', [
+            'data' => $data,
+        ]);
     }
 
     public function edit(string $id)
