@@ -69,8 +69,8 @@
                     <li><a href="{{ route('supplier.index') }}" class="block py-2 sidebar-link">Supplier</a></li>
                     <p class="py-2 mx-4 font-semibold text-sm">TRANSACTION</p>
                     <li><a href="{{ route('pengeluaran.index') }}" class="block py-2 sidebar-link">Pengeluaran</a></li>
-                    <li><a href="#" class="block py-2 sidebar-link">Penjualan</a></li>
                     <li><a href="{{ route('pembelian.index') }}" class="block py-2 sidebar-link">Pembelian</a></li>
+                    <li><a href="#" class="block py-2 sidebar-link">Penjualan</a></li>
                     <p class="py-2 mx-4 font-semibold text-sm">CONTROLLER</p>
                     <li><a href="{{ route('setting.index') }}" class="block py-2 sidebar-link">Setting</a></li>
                 </ul>
